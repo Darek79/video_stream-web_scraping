@@ -1,0 +1,66 @@
+.react_player {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 10px calc(60vw - 10px) calc(40vw - 10px) 10px;
+  grid-template-rows: auto 30px 50px;
+  .player_wrapper {
+    grid-row: 1;
+    grid-column: 2;
+    align-self: center;
+    justify-self: center;
+  }
+  .play_buttons {
+    grid-row: 2;
+    grid-column: 2;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    .play {
+      width: 70px;
+      height: 25px;
+      border-radius: 5%;
+      border: none;
+      outline: none;
+      flex-basis: 10%;
+    }
+    .play:hover {
+      cursor: pointer;
+    }
+    .input_streamed {
+      flex-basis: 80%;
+    }
+  }
+  .input_control {
+    grid-row: 3;
+    grid-column: 2;
+    align-self: center;
+    .input_mute {
+      width: 70px;
+      height: 25px;
+      border-radius: 5%;
+      grid-row: 3;
+      grid-column: 2;
+      border: none;
+      outline: none;
+    }
+    .input_mute:hover {
+      cursor: pointer;
+    }
+  }
+  .input_wrapper {
+    grid-row: 3;
+    grid-column: 2;
+    align-self: center;
+  }
+
+  .isActive {
+    background-color: green;
+    color: white;
+  }
+  .isNotActive {
+    background-color: red;
+    color: white;
+  }
+}
