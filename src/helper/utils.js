@@ -3,15 +3,16 @@ const puppeteer = require("puppeteer");
 const path = require("path");
 const fs = require("fs");
 const util = require("util");
+//channelId=${id}
 exports.fetchDataGoogle = async (id, res) => {
   try {
     const r = await axios.get(
-      `https://www.googleapis.com/youtube/v3/search?key=${process.env.YT_KEY}&part=snippet&order=date&maxResults=${res}&channelId=${id}`
+      `https://www.googleapis.com/youtube/v3/search?key=${process.env.YT_KEY}&part=snippet&order=date&maxResults=5&channelId=${id}`
     );
 
     return r.data.items;
   } catch (error) {
-    return "error";
+    return error;
   }
 };
 //&part=snippet&maxResults=5&relevanceLanguage=de&videoDefinition=standard&region=de&videoCaption=any

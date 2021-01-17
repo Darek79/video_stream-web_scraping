@@ -1,8 +1,9 @@
 .react_player {
   display: grid;
   height: 100vh;
-  grid-template-columns: 10px calc(60vw - 10px) calc(40vw - 10px) 10px;
-  grid-template-rows: auto 30px 50px;
+  grid-template-columns: 5px 650px auto 5px;
+  grid-template-rows: 400px 30px 50px auto;
+  // column-gap: 5px;
   .player_wrapper {
     grid-row: 1;
     grid-column: 2;
@@ -36,7 +37,11 @@
     grid-row: 3;
     grid-column: 2;
     align-self: center;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
     .input_mute {
+      flex-basis: 10%;
       width: 70px;
       height: 25px;
       border-radius: 5%;
@@ -47,6 +52,9 @@
     }
     .input_mute:hover {
       cursor: pointer;
+    }
+    .input_volume_wrapper {
+      flex-basis: 80%;
     }
   }
   .input_wrapper {
@@ -62,5 +70,45 @@
   .isNotActive {
     background-color: red;
     color: white;
+  }
+  .content_right {
+    grid-row: 1/5;
+    grid-column: 3;
+    width: 100%;
+    height: 100%;
+    // background-color: green;
+    justify-self: center;
+    .channel_wrapper {
+      .channel_title {
+        text-align: center;
+        margin-top: 15px;
+        margin-right: 10px;
+      }
+      .channel_title:hover {
+        cursor: pointer;
+      }
+      .preview_wrapper {
+        height: auto;
+        .video_item_wrapper {
+          display: flex;
+          border: 1px solid white;
+
+          .video_img {
+            margin-right: 10px;
+          }
+          .video_info_wrapper {
+            .video_info {
+              margin-top: 10px;
+            }
+          }
+        }
+        .video_item_wrapper:nth-child(-n + 4) {
+          margin-bottom: 5px;
+        }
+        .video_item_wrapper:hover {
+          cursor: pointer;
+        }
+      }
+    }
   }
 }

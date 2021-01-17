@@ -25,11 +25,11 @@ app.get(
     res.status(200).json({msg: "ok1"});
   })
 );
-app.get("/video/:channelId/:nr", async (req, res, next) => {
+app.get("/video/:channelId", async (req, res, next) => {
   console.log(req.params.channelId, req.params.nr);
   const d = await fetchDataGoogle(req.params.channelId, req.params.nr);
   // console.log(d);
-  res.status(200).json({d});
+  res.status(200).json(d);
 });
 app.get("/site", async (req, res, next) => {
   console.log(req.query.q);

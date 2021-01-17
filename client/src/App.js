@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useRef} from "react";
 import axios from "axios";
-import clip from "./assets/clip.mp4";
 import ReactPlayer from "react-player/youtube";
 import {YT} from "./components/yt";
 import "./App.scss";

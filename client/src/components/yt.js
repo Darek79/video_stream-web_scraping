@@ -1,5 +1,7 @@
 import React, {useState, useEffect, useRef} from "react";
 import axios from "axios";
+import {PreviewVideo} from "./video_preview";
+import {fetchData} from "./../utils/utils";
 // import clip from "./assets/clip.mp4";
 import ReactPlayer from "react-player/youtube";
 import "./yt.scss";
@@ -9,11 +11,16 @@ export const YT = () => {
   const [played, setPlayed] = useState(0);
   const [mute, setMute] = useState(false);
   const myPlayer = useRef(null);
-  // useEffect(() => {
-  //   if (play) {
-  //     axios.get("/clip").then((d) => setVideo([...d]));
-  //   }
-  // }, [play]);
+  const myId = useRef("");
+  const [link, setLink] = useState("");
+  const [fetched, setFetched] = useState([]);
+  const [showVideo, setVideo] = useState("");
+  useEffect(() => {
+    if (link) {
+      fetchData(link, setFetched);
+      setLink("");
+    }
+  }, [link]);
   // useEffect(() => {
   //   if (myPlayer.current) {
   //     setTime(() =>
@@ -47,12 +54,20 @@ export const YT = () => {
   const onMute = () => {
     setMute((p) => !p);
   };
+  const getLink = (e) => {
+    setLink(e.target.getAttribute("data-index"));
+  };
+  const getId = (e) => {
+    // console.log(e.target.parentNode);
+    myId.current = e.target.parentNode.getAttribute("data-id");
+    console.log(e.target.parentNode.getAttribute("data-id"));
+  };
   return (
     <section className="react_player">
       <div className="player_wrapper">
         <ReactPlayer
           ref={myPlayer}
-          url="https://www.youtube.com/watch?v=9mVgE0wxg4g&ab_channel=TheXclusiveAce"
+          url={`https://www.youtube.com/watch?v=${myId.current}`}
           playing={play}
           onProgress={(p, f) => progress(p, f)}
           volume={sound}
@@ -86,17 +101,22 @@ export const YT = () => {
           onClick={onMute}
         >
           mute
-        </button>{" "}
-        <input
-          className="input_volume"
-          type="range"
-          min="0"
-          max="1"
-          step="any"
-          value={sound}
-          onChange={mySound}
-        ></input>
+        </button>
+        <div className="input_volume_wrapper">
+          <input
+            className="input_volume"
+            type="range"
+            min="0"
+            max="1"
+            step="any"
+            value={sound}
+            onChange={mySound}
+          ></input>
+        </div>
       </div>
+      <section className="content_right">
+        <PreviewVideo fn1Set={getLink} preview={fetched} fn2Get={getId} />
+      </section>
     </section>
   );
 };
