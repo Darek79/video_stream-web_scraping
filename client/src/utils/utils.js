@@ -1,9 +1,12 @@
 import axios from "axios";
 import moment from "moment";
-export const fetchData = async (path, id, fn) => {
+export const fetchData = async (path, id, fn, fnSpinner = "") => {
   try {
     const r = await axios.get(`${path}/${id}`);
-    // const r = JSON.parse(localStorage.getItem("links"));
+    if (fnSpinner && r.data) {
+      fnSpinner(() => false);
+    }
+
     fn(r.data);
   } catch (error) {
     return error;

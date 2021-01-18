@@ -2,7 +2,6 @@ import React, {useState, useEffect, useRef} from "react";
 import axios from "axios";
 import {PreviewVideo} from "./video_preview";
 import {fetchData} from "../utils/utils";
-// import clip from "./assets/clip.mp4";
 import ReactPlayer from "react-player/youtube";
 import "./yt.scss";
 export const YT = ({fnShow}) => {
@@ -21,17 +20,6 @@ export const YT = ({fnShow}) => {
       setLink("");
     }
   }, [link]);
-  // useEffect(() => {
-  //   if (myPlayer.current) {
-  //     setTime(() =>
-  //       (
-  //         (myPlayer.current.getDuration() -
-  //           myPlayer.current.getSecondsLoaded()) /
-  //         60
-  //       ).toFixed(2)
-  //     );
-  //   }
-  // }, [played]);
 
   const start = () => {
     setPlay((p) => !p);
@@ -75,7 +63,6 @@ export const YT = ({fnShow}) => {
           // onSeek={(s) => seek(s)}
         />
       </div>
-      <p>{myPlayer.current && myPlayer.current.getDuration() / 60}</p>
       <div className="play_buttons">
         <button
           onClick={start}

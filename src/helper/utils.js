@@ -15,10 +15,11 @@ exports.fetchDataGoogle = async (id, res) => {
     return error;
   }
 };
+//.text-wrap>a
 //&part=snippet&maxResults=5&relevanceLanguage=de&videoDefinition=standard&region=de&videoCaption=any
 const selectors = [
   {p: "raptastisch", s: ".rpwe-title>a"},
-  {p: "hiphopdx", s: ".text-wrap>a"},
+  {p: "hiphopdx", s: ".newscol>ul>li>a"},
 ];
 exports.fetchData = async (url, page) => {
   let obj = selectors.find((el) => url.includes(el.p));
@@ -30,7 +31,10 @@ exports.fetchData = async (url, page) => {
     // await page.waitForSelector(MODALBUTTONSELECTOR);
     // await page.click(MODALBUTTONSELECTOR);
     const options = await page.$$eval(obj.s, (options) =>
-      options.map((option) => ({link: option.href, text: option.innerHTML}))
+      options.map((option) => ({
+        link: option.href,
+        text: option.innerHTML,
+      }))
     );
     // await page.screenshot({path: "example.png", fullPage: true});
     await browser.close();
@@ -76,3 +80,4 @@ exports.globalErrorHandler = async (err, req, res, next) => {
   }
   res.status(500).json({msg: "something went wrong"});
 };
+
