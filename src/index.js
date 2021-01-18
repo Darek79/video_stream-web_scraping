@@ -31,17 +31,15 @@ app.get("/video/:channelId", async (req, res, next) => {
   // console.log(d);
   res.status(200).json(d);
 });
-app.get("/site", async (req, res, next) => {
-  console.log(req.query.q);
+app.get("/site/:page", async (req, res, next) => {
   const selectors = [
     {p: "raptastisch", s: ".rpwe-title>a"},
     {p: "hiphopdx", s: ".text-wrap>a"},
   ];
-  console.log(`https://www.${req.query.q}`);
-  const d = await fetchData(`https://www.${req.query.q}`);
+  const d = await fetchData(`https://www.${req.params.page}`);
   console.log(d, "output");
 
-  res.status(200).json({d: "ok"});
+  res.status(200).json(d);
 });
 
 app.use("*", (req, res, next) => {

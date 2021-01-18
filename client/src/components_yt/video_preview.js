@@ -1,8 +1,8 @@
 import React, {lazy, Suspense} from "react";
 // import VideoItem from "./video_item";
-import {changeDate} from "./../utils//utils";
+import {changeDate} from "../utils/utils";
 const VideoItem = lazy(() => import("./video_item"));
-export const PreviewVideo = ({fn1Set, fn2Get, preview}) => {
+export const PreviewVideo = ({fn1Set, fn2Get, preview, fnReturn}) => {
   return (
     <section className="channel_wrapper">
       {/* <div className="play channel_title_wrapper"> */}
@@ -20,6 +20,9 @@ export const PreviewVideo = ({fn1Set, fn2Get, preview}) => {
       >
         Mr Rap
       </button>
+      <button className="channel_title back_title" onClick={fnReturn}>
+        Back to Title
+      </button>
       {/* </div> */}
       <div className="preview_wrapper">
         {preview &&
@@ -31,7 +34,6 @@ export const PreviewVideo = ({fn1Set, fn2Get, preview}) => {
             return (
               <Suspense fallback={"loading"} key={el.etag}>
                 <VideoItem
-                  
                   clName="video_item_wrapper"
                   fnGetVideo={fn2Get}
                   videoId={el.id.videoId}

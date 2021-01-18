@@ -1,39 +1,49 @@
 import React, {useState, useEffect, useRef} from "react";
 import axios from "axios";
 import ReactPlayer from "react-player/youtube";
-import {YT} from "./components/yt";
+import ModuleButon from "./components_main/title";
+import {YT} from "./components_yt/yt";
+import {WebMain} from "./components_web/web_main";
 import "./App.scss";
 
 function App() {
-  const [play, setPlay] = useState(false);
-  const [video, setVideo] = useState([]);
-  const [played, setPlayed] = useState(0);
-  // useEffect(() => {
-  //   if (play) {
-  //     axios.get("/clip").then((d) => setVideo([...d]));
-  //   }
-  // }, [play]);
-  const myPlayer = useRef();
-  const start = () => {
-    setPlay((p) => !p);
+  const [yout, setYT] = useState(false);
+  const [scrape, setScrape] = useState(false);
+
+  const fnYT = () => {
+    setYT((p) => !p);
   };
-  const progress = (p, f) => {
-    console.log("l");
-    console.log(p);
-    console.log(myPlayer.current);
-    setPlayed(() => p.played);
-  };
-  const seek = (e) => {
-    setPlayed(() => myPlayer.current.seekTo(e.target.value));
-  };
-  const mouseDown = () => {
-    setPlay(() => false);
+  const fnScrape = () => {
+    setScrape((p) => !p);
   };
   return (
     <div className="App">
-      <YT />
+      {!yout ? (
+        <div
+          className="title_btn"
+          style={scrape ? {display: "none"} : {display: ""}}
+        >
+          <ModuleButon module="You Tube" fn={fnYT} />
+        </div>
+      ) : (
+        <YT fnShow={fnYT} />
+      )}
+      {!scrape ? (
+        <div
+          className="title_btn"
+          style={yout ? {display: "none"} : {display: ""}}
+        >
+          <ModuleButon module="Web Scrape" fn={fnScrape} />
+        </div>
+      ) : (
+        <WebMain fnShow={fnScrape} />
+      )}
     </div>
   );
 }
 
 export default App;
+
+{
+  /* <WebMain fnShow={fnScrape} */
+}

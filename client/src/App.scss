@@ -1,5 +1,19 @@
+
 .App {
   background-color: black;
   overflow-x: hidden;
   color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .title_btn {
+    border: 2px solid #edd59e;
+    padding: 5px 10px;
+    border-radius: 5%;
+    font-size: 22px;
+  }
+  .title_btn:hover {
+    cursor: pointer;
+  }
 }

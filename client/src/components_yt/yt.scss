@@ -1,5 +1,6 @@
 .react_player {
   display: grid;
+  width: 100%;
   height: 100vh;
   grid-template-columns: 5px 650px auto 5px;
   grid-template-rows: 400px 30px 50px auto;
@@ -79,10 +80,18 @@
     // background-color: green;
     justify-self: center;
     .channel_wrapper {
+      position: relative;
       .channel_title {
         text-align: center;
         margin-top: 15px;
         margin-right: 10px;
+        border: none;
+        outline: none;
+        padding: 5px 10px;
+      }
+      .back_title {
+        position: absolute;
+        right: 0;
       }
       .channel_title:hover {
         cursor: pointer;

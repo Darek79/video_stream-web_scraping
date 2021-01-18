@@ -1,11 +1,11 @@
 import React, {useState, useEffect, useRef} from "react";
 import axios from "axios";
 import {PreviewVideo} from "./video_preview";
-import {fetchData} from "./../utils/utils";
+import {fetchData} from "../utils/utils";
 // import clip from "./assets/clip.mp4";
 import ReactPlayer from "react-player/youtube";
 import "./yt.scss";
-export const YT = () => {
+export const YT = ({fnShow}) => {
   const [play, setPlay] = useState(false);
   const [sound, setSound] = useState(0.5);
   const [played, setPlayed] = useState(0);
@@ -14,10 +14,10 @@ export const YT = () => {
   const myId = useRef("");
   const [link, setLink] = useState("");
   const [fetched, setFetched] = useState([]);
-  const [showVideo, setVideo] = useState("");
+  // const [showVideo, setVideo] = useState("");
   useEffect(() => {
     if (link) {
-      fetchData(link, setFetched);
+      fetchData("video", link, setFetched);
       setLink("");
     }
   }, [link]);
@@ -115,7 +115,12 @@ export const YT = () => {
         </div>
       </div>
       <section className="content_right">
-        <PreviewVideo fn1Set={getLink} preview={fetched} fn2Get={getId} />
+        <PreviewVideo
+          fn1Set={getLink}
+          preview={fetched}
+          fn2Get={getId}
+          fnReturn={fnShow}
+        />
       </section>
     </section>
   );
