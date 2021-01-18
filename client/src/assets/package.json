@@ -1,0 +1,25 @@
+{
+  "name": "react-spinner-simple",
+  "version": "1.0.6",
+  "description": "simple react spinner ",
+  "main": "spinner.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buzzer79/react-spinner.git"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.1",
+    "react-dom": ">=17.0.1",
+    "node-sass": "^4.14.1"
+  },
+  "keywords": [
+    "spinner"
+  ],
+  "author": "Dariusz Kloda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/buzzer79/react-spinner/issues"
+  },
+  "homepage": "https://github.com/buzzer79/react-spinner#readme"
+}
